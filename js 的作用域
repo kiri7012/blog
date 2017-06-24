@@ -1,0 +1,26 @@
+//在js中每个函数作为一个作用域，在外部无法访问到作用域中的变量
+    function one() {
+        var innerVal = "one";
+    }
+    one();
+    console.log(innerVal);//此时在控制台会报错 ReferenceError: innerVal is not defined
+    
+    //    js的作用域链
+//    由于js中的每个函数作为一个作用域，如果出现函数嵌套函数，则会出现作用域链
+    function fun() {
+        var two = "two";
+        function inner() {
+            var two = "one";
+            console.log(two);
+        }
+        inner();
+    }
+    fun(); //这个时候会打印出one，因为在执行fun（）之后inner也会被调用，在inner函数体内本身就有一个two变量，所以打印出来的是one；而如果inner函数体内没有two变量，会一直一层一层向上寻找，知道找到。
+    
+    作用域： 全局作用域 -->Function函数作用域 --> inner函数作用域
+    
+    
+   声明提前
+   在js中如果不创建变量，直接使用则会报错
+   在js中如果创建值而不赋值，则该变量的值则为undefined
+   
